@@ -3,6 +3,7 @@ package service;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Database {
 
@@ -19,6 +20,15 @@ public class Database {
         connection = DriverManager.getConnection(connectionStr, LOGIN, PASSWORD);
         System.out.println("Connection to database " + DB_NAME + " is successful.");
         return connection;
+    }
+
+    public void createTable(String sql) {
+        try (Statement statement = getDbConnection().createStatement()) {
+            statement.executeUpdate(sql);
+            System.out.println("Table created successfully.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
