@@ -9,8 +9,6 @@ public class Main {
 
         Database database = new Database();
 
-
-
 //        database.createTable("CREATE TABLE customers " +
 //                "(id INT AUTO_INCREMENT PRIMARY KEY, " +
 //                "first_name VARCHAR(30), " +

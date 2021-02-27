@@ -1,4 +1,6 @@
 package dao.interfaces;
 
-public interface ProductDao extends BaseDao{
+import models.Product;
+
+public interface ProductDao extends BaseDao<Integer, Product>{
 }

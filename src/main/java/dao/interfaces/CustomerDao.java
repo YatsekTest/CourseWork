@@ -1,4 +1,7 @@
 package dao.interfaces;
 
-public interface CustomerDao extends BaseDao{
+import models.Customer;
+
+public interface CustomerDao extends BaseDao<Integer, Customer> {
+
 }

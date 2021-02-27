@@ -1,4 +1,6 @@
 package dao.interfaces;
 
-public interface OrderDao extends BaseDao{
+import models.Order;
+
+public interface OrderDao extends BaseDao<Integer, Order> {
 }
