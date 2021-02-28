@@ -6,6 +6,14 @@ public class Product {
     private String name;
     private int price;
 
+    public Product() {
+    }
+
+    public Product(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
     public Product(int id, String name, int price) {
         this.id = id;
         this.name = name;
@@ -34,5 +42,14 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product\t{" +
+                "id=" + id +
+                ",\tname='" + name + '\'' +
+                ",\tprice=" + price +
+                '}';
     }
 }

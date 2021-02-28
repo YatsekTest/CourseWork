@@ -7,18 +7,22 @@ import java.sql.Statement;
 
 public class Database {
 
-    private final String HOST = "localhost";
-    private final String PORT = "3307";
-    private final String DB_NAME = "internet_store";
-    private final String LOGIN = "root";
-    private final String PASSWORD = "root";
+    private final static String HOST = "localhost";
+    private final static String PORT = "3307";
+    private final static String DB_NAME = "internet_store";
+    private final static String LOGIN = "root";
+    private final static String PASSWORD = "root";
 
-    Connection connection = null;
+    private static Connection connection = null;
 
-    public Connection getDbConnection() throws SQLException {
+    public static Connection getDbConnection() {
         String connectionStr = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME;
-        connection = DriverManager.getConnection(connectionStr, LOGIN, PASSWORD);
-        System.out.println("Connection to database " + DB_NAME + " is successful.");
+        try {
+            connection = DriverManager.getConnection(connectionStr, LOGIN, PASSWORD);
+            System.out.println("Connection to database " + DB_NAME + " is successful.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return connection;
     }
 
