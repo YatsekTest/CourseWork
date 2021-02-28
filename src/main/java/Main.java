@@ -15,13 +15,25 @@ public class Main {
 //        for (int i = 0; i < 11; i++) {
 //            productService.createProduct(new Product("Product-" + i, (int) (Math.random() * 91) + 10));
 //        }
+
         List<Product> products = productService.getAllProducts();
-        for (Product product : products) {
-            System.out.println(product.getId() + "\t" + product.getName() + "\t" + product.getPrice());
-        }
-        System.out.println();
-        Product product = productService.getProductById(7);
-        System.out.println(product.toString());
+        System.out.println("Размер таблицы products " + products.size());
+
+        productService.deleteProductById(3);
+        List<Product> products1 = productService.getAllProducts();
+        System.out.println("Размер таблицы products теперь " + products1.size());
+
+
+//        for (Product product : products) {
+//            System.out.println(product.getId() + "\t" + product.getName() + "\t" + product.getPrice());
+//        }
+
+//        Product product = productService.getProductById(7);
+//        System.out.println(product.toString());
+//        productService.updateProductById(7, new Product("Non", 12));
+//        Product product1 = productService.getProductById(7);
+//        System.out.println(product1.toString());
+
 //        productService.createProducts();
 
 //        Database database = new Database();

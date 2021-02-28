@@ -24,4 +24,12 @@ public class ProductService {
         return productDaoMysql.findById(id);
     }
 
+    public void updateProductById(int id, Product product) {
+        productDaoMysql.updateById(id, product);
+    }
+
+    public void deleteProductById(int id) {
+        productDaoMysql.deleteById(id);
+    }
+
 }

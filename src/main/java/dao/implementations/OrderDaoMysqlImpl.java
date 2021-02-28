@@ -22,7 +22,7 @@ public class OrderDaoMysqlImpl implements OrderDao {
     }
 
     @Override
-    public void update(Order order) {
+    public void updateById(Integer id, Order order) {
 
     }
 
@@ -31,8 +31,4 @@ public class OrderDaoMysqlImpl implements OrderDao {
 
     }
 
-    @Override
-    public void delete(Order order) {
-
-    }
 }

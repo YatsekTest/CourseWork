@@ -10,10 +10,8 @@ public interface BaseDao<I, T> {
 
     T findById(I id);
 
-    void update(T t);
+    void updateById(I id, T t);
 
     void deleteById(I id);
-
-    void delete(T t);
 
 }

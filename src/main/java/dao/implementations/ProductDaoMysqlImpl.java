@@ -1,7 +1,6 @@
 package dao.implementations;
 
 import dao.interfaces.ProductDao;
-import models.Customer;
 import models.Product;
 import service.Database;
 
@@ -60,17 +59,30 @@ public class ProductDaoMysqlImpl implements ProductDao {
     }
 
     @Override
-    public void update(Product product) {
-
+    public void updateById(Integer id, Product product) {
+        String sql = "UPDATE products SET name = ?, price = ? WHERE id = ?;";
+        try (Connection connection = Database.getDbConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Product successfully updated in products table.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        String sql = "DELETE FROM products WHERE id = " + id + ";";
+        try (Connection connection = Database.getDbConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+            System.out.println("Product successfully deleted from products table.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void delete(Product product) {
-
-    }
 }

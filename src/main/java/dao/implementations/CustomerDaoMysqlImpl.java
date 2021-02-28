@@ -22,7 +22,7 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void updateById(Integer id, Customer customer) {
 
     }
 
@@ -31,8 +31,4 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
 
     }
 
-    @Override
-    public void delete(Customer customer) {
-
-    }
 }
