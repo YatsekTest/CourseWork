@@ -14,6 +14,10 @@ public class Customer {
         this.age = age;
     }
 
+    public Customer() {
+
+    }
+
     public int getId() {
         return id;
     }
