@@ -30,4 +30,9 @@ public class OrderService {
         orderDaoMysql.deleteAll();
     }
 
+    public void printAllOrders() {
+        List<Order> orders = orderDaoMysql.findAll();
+        for (Order order : orders) System.out.println(order.toString());
+    }
+
 }

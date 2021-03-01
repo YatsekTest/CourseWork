@@ -1,6 +1,7 @@
 package service;
 
 import dao.implementations.ProductDaoMysqlImpl;
+import models.Order;
 import models.Product;
 
 import java.util.ArrayList;
@@ -34,6 +35,11 @@ public class ProductService {
 
     public void deleteAllProducts() {
         productDaoMysql.deleteAll();
+    }
+
+    public void printAllProducts() {
+        List<Product> products = productDaoMysql.findAll();
+        for (Product product : products) System.out.println(product.toString());
     }
 
 }

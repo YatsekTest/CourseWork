@@ -19,7 +19,7 @@ public class Database {
         String connectionStr = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME;
         try {
             connection = DriverManager.getConnection(connectionStr, LOGIN, PASSWORD);
-            System.out.println("Connection to database " + DB_NAME + " is successful.");
+//            System.out.println("Connection to database " + DB_NAME + " is successful.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class Database {
     public void createTable(String sql) {
         try (Statement statement = getDbConnection().createStatement()) {
             statement.executeUpdate(sql);
-            System.out.println("Table created successfully.");
+//            System.out.println("Table created successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

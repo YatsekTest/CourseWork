@@ -2,8 +2,10 @@ package service;
 
 import dao.implementations.CustomerDaoMysqlImpl;
 import models.Customer;
+import models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerService {
 
@@ -27,6 +29,11 @@ public class CustomerService {
 
     public void deleteAllCustomers() {
         customerDaoMysql.deleteAll();
+    }
+
+    public void printAllCustomers() {
+        List<Customer> customers = customerDaoMysql.findAll();
+        for (Customer customer : customers) System.out.println(customer.toString());
     }
 
 }

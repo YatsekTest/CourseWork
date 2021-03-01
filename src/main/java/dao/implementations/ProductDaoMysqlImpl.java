@@ -4,10 +4,8 @@ import dao.interfaces.ProductDao;
 import models.Product;
 import service.Database;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDaoMysqlImpl implements ProductDao {
 
@@ -19,7 +17,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setInt(2, product.getPrice());
             preparedStatement.executeUpdate();
-            System.out.println("Product successfully added into products table.");
+//            System.out.println("Product successfully added into products table.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +66,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
             preparedStatement.setInt(2, product.getPrice());
             preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
-            System.out.println("Product successfully updated in products table.");
+//            System.out.println("Product successfully updated in products table.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,7 +78,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
-            System.out.println("Product successfully deleted from products table.");
+//            System.out.println("Product successfully deleted from products table.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
