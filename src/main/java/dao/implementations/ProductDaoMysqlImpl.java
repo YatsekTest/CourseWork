@@ -4,6 +4,7 @@ import dao.interfaces.ProductDao;
 import models.Product;
 import service.Database;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,8 @@ public class ProductDaoMysqlImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAll() {
-        List<Product> productList = new ArrayList<>();
+    public ArrayList<Product> findAll() {
+        ArrayList<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM products;";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement();
@@ -85,4 +86,14 @@ public class ProductDaoMysqlImpl implements ProductDao {
         }
     }
 
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM products;";
+        try (Connection connection = Database.getDbConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

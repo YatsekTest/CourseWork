@@ -1,10 +1,6 @@
 import models.Product;
-import service.Database;
 import service.ProductService;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -19,7 +15,7 @@ public class Main {
         List<Product> products = productService.getAllProducts();
         System.out.println("Размер таблицы products " + products.size());
 
-        productService.deleteProductById(3);
+        productService.deleteAllProducts();
         List<Product> products1 = productService.getAllProducts();
         System.out.println("Размер таблицы products теперь " + products1.size());
 

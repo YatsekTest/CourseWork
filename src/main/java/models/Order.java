@@ -4,12 +4,20 @@ public class Order {
 
     private int id;
     private Customer customer;
-    private Order order;
+    private Product product;
 
-    public Order(int id, Customer customer, Order order) {
+    public Order() {
+    }
+
+    public Order(Customer customer, Product product) {
+        this.customer = customer;
+        this.product = product;
+    }
+
+    public Order(int id, Customer customer, Product product) {
         this.id = id;
         this.customer = customer;
-        this.order = order;
+        this.product = product;
     }
 
     public int getId() {
@@ -28,11 +36,22 @@ public class Order {
         this.customer = customer;
     }
 
-    public Order getOrder() {
-        return order;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "Order\t{" +
+                "id=" + id +
+                ",\tCustomer name = " + customer.getFirstName() + " " + customer.getLastName() +
+                ",\tCustomer age = " + customer.getAge() +
+                ",\tProduct name = " + product.getName() +
+                ",\tProduct price = " + product.getPrice() +
+                '}';
     }
 }

@@ -14,7 +14,7 @@ public class CustomerService {
     }
 
     public ArrayList<Customer> getAllCustomers() {
-        return (ArrayList<Customer>) customerDaoMysql.findAll();
+        return customerDaoMysql.findAll();
     }
 
     public Customer getCustomerById(int id) {
@@ -23,6 +23,10 @@ public class CustomerService {
 
     public void deleteCustomerById(int id) {
         customerDaoMysql.deleteById(id);
+    }
+
+    public void deleteAllCustomers() {
+        customerDaoMysql.deleteAll();
     }
 
 }

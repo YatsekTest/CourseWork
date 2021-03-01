@@ -10,15 +10,15 @@ import java.util.List;
 
 public class CustomerDaoMysqlImpl implements CustomerDao {
 
-    private final String tableName = "customers";
-    private final String id = "id";
-    private final String firstName = "first_name";
-    private final String lastName = "last_name";
-    private final String age = "age";
+    private final static String TABLE_NAME = "customers";
+    private final static String ID = "id";
+    private final static String FIRST_NAME = "first_name";
+    private final static String LAST_NAME = "last_name";
+    private final static String AGE = "age";
 
     @Override
     public void create(Customer customer) {
-        String sql = "INSERT INTO " + tableName + " (first_name, last_name, age) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO " + TABLE_NAME + " (first_name, last_name, age) VALUES (?, ?, ?);";
         try (Connection connection = Database.getDbConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, customer.getFirstName());
@@ -31,17 +31,17 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
     }
 
     @Override
-    public List<Customer> findAll() {
-        List<Customer> customerList = new ArrayList<>();
-        String sql = "SELECT * FROM " + tableName + ";";
+    public ArrayList<Customer> findAll() {
+        ArrayList<Customer> customerList = new ArrayList<>();
+        String sql = "SELECT * FROM " + TABLE_NAME + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                customerList.add(new Customer(resultSet.getInt(id),
-                        resultSet.getString(firstName),
-                        resultSet.getString(lastName),
-                        resultSet.getInt(age)));
+                customerList.add(new Customer(resultSet.getInt(ID),
+                        resultSet.getString(FIRST_NAME),
+                        resultSet.getString(LAST_NAME),
+                        resultSet.getInt(AGE)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,15 +52,15 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
     @Override
     public Customer findById(Integer id) {
         Customer customer = new Customer();
-        String sql = "SELECT * FROM " + tableName + " WHERE id = " + id + ";";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                customer.setId(resultSet.getInt(this.id));
-                customer.setFirstName(resultSet.getString(firstName));
-                customer.setLastName(resultSet.getString(lastName));
-                customer.setAge(resultSet.getInt(age));
+                customer.setId(resultSet.getInt(ID));
+                customer.setFirstName(resultSet.getString(FIRST_NAME));
+                customer.setLastName(resultSet.getString(LAST_NAME));
+                customer.setAge(resultSet.getInt(AGE));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
 
     @Override
     public void updateById(Integer id, Customer customer) {
-        String sql = "UPDATE " + tableName + " SET first_name = ?, last_name = ?, age = ? WHERE id = ?;";
+        String sql = "UPDATE " + TABLE_NAME + " SET first_name = ?, last_name = ?, age = ? WHERE id = ?;";
         try (Connection connection = Database.getDbConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, customer.getFirstName());
@@ -85,7 +85,18 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
 
     @Override
     public void deleteById(Integer id) {
-        String sql = "DELETE FROM " + tableName + " WHERE id = " + id + ";";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE id = " + id + ";";
+        try (Connection connection = Database.getDbConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM " + TABLE_NAME + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);

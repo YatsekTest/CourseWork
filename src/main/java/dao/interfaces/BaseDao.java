@@ -14,4 +14,6 @@ public interface BaseDao<I, T> {
 
     void deleteById(I id);
 
+    void deleteAll();
+
 }

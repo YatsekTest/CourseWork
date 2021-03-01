@@ -15,9 +15,9 @@ public class ProductService {
     }
 
     public ArrayList<Product> getAllProducts() {
-        List<Product> products;
+        ArrayList<Product> products;
         products = productDaoMysql.findAll();
-        return (ArrayList<Product>) products;
+        return products;
     }
 
     public Product getProductById(int id) {
@@ -30,6 +30,10 @@ public class ProductService {
 
     public void deleteProductById(int id) {
         productDaoMysql.deleteById(id);
+    }
+
+    public void deleteAllProducts() {
+        productDaoMysql.deleteAll();
     }
 
 }
