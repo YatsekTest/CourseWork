@@ -37,19 +37,25 @@ public class CustomerServiceTest {
     @Test
     public void testCreateCustomer() {
         customerService.createCustomer(new Customer("NameEleven", "SurnameEleven", 30));
-        Assert.assertEquals(30, customerService.getCustomerById(11).getAge());
+        Assert.assertEquals(customerService.getCustomerById(11).getAge(), 30);
     }
 
     @Test
     public void testGetAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
-        Assert.assertEquals(10, customers.size());
+        Assert.assertEquals(customers.size(), 10);
     }
 
     @Test
     public void testGetCustomerById() {
         Customer customer = customerService.getCustomerById(7);
-        Assert.assertEquals("Name7", customer.getFirstName());
+        Assert.assertEquals(customer.getFirstName(), "Name7");
+    }
+
+    @Test
+    public void testUpdateCustomerById() {
+        customerService.updateCustomerById(3, customerService.getCustomerById(5));
+        Assert.assertEquals(customerService.getCustomerById(3).getFirstName(), "Name5");
     }
 
     @Test
@@ -57,13 +63,13 @@ public class CustomerServiceTest {
         customerService.deleteCustomerById(10);
         customerService.deleteCustomerById(1);
         List<Customer> customers = customerService.getAllCustomers();
-        Assert.assertEquals(8, customers.size());
+        Assert.assertEquals(customers.size(), 8);
     }
 
     @Test
     public void testDeleteAllCustomers() {
         customerService.deleteAllCustomers();
         List<Customer> customers = customerService.getAllCustomers();
-        Assert.assertEquals(0, customers.size());
+        Assert.assertEquals(customers.size(), 0);
     }
 }

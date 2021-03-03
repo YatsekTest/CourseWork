@@ -23,6 +23,10 @@ public class CustomerService {
         return customerDaoMysql.findById(id);
     }
 
+    public void updateCustomerById(int id, Customer customer) {
+        customerDaoMysql.updateById(id, customer);
+    }
+
     public void deleteCustomerById(int id) {
         customerDaoMysql.deleteById(id);
     }

@@ -22,6 +22,10 @@ public class OrderService {
         return orderDaoMysql.findById(id);
     }
 
+    public void updateOrderById(int id, Order order) {
+        orderDaoMysql.updateById(id, order);
+    }
+
     public void deleteOrderById(int id) {
         orderDaoMysql.deleteById(id);
     }

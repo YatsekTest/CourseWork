@@ -67,7 +67,7 @@ public class OrderDaoMysqlImpl implements OrderDao {
 
     @Override
     public void updateById(Integer id, Order order) {
-        String sql = "UPDATE " + TABLE_NAME + " SET " + CUSTOMER_ID + " = ?, " + PRODUCT_ID + " = ?, WHERE id = ?;";
+        String sql = "UPDATE " + TABLE_NAME + " SET " + CUSTOMER_ID + " = ?, " + PRODUCT_ID + " = ? WHERE id = ?;";
         try (Connection connection = Database.getDbConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, order.getCustomer().getId());

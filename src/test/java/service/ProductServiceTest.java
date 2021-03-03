@@ -37,27 +37,27 @@ public class ProductServiceTest {
     @Test
     public void testCreateProduct() {
         productService.createProduct(new Product("ProductEleven", 50));
-        Assert.assertEquals("ProductEleven", productService.getProductById(11).getName());
-        Assert.assertEquals(50, productService.getProductById(11).getPrice());
+        Assert.assertEquals(productService.getProductById(11).getName(), "ProductEleven");
+        Assert.assertEquals(productService.getProductById(11).getPrice(), 50);
     }
 
     @Test
     public void testGetAllProducts() {
         List<Product> products = productService.getAllProducts();
-        Assert.assertEquals(10, products.size());
+        Assert.assertEquals(products.size(), 10);
     }
 
     @Test
     public void testGetProductById() {
         Product product = productService.getProductById(3);
-        Assert.assertEquals("Product-3", product.getName());
+        Assert.assertEquals(product.getName(), "Product-3");
     }
 
     @Test
     public void testUpdateProductById() {
         productService.updateProductById(5, new Product("JustProduct", 0));
-        Assert.assertEquals(0, productService.getProductById(5).getPrice());
-        Assert.assertEquals("JustProduct", productService.getProductById(5).getName());
+        Assert.assertEquals(productService.getProductById(5).getPrice(), 0);
+        Assert.assertEquals(productService.getProductById(5).getName(), "JustProduct");
     }
 
     @Test
@@ -66,13 +66,13 @@ public class ProductServiceTest {
         productService.deleteProductById(2);
         productService.deleteProductById(3);
         List<Product> products = productService.getAllProducts();
-        Assert.assertEquals(7, products.size());
+        Assert.assertEquals(products.size(), 7);
     }
 
     @Test
     public void testDeleteAllProducts() {
         productService.deleteAllProducts();
         List<Product> products = productService.getAllProducts();
-        Assert.assertEquals(0, products.size());
+        Assert.assertEquals(products.size(), 0);
     }
 }

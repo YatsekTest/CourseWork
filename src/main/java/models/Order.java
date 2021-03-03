@@ -48,10 +48,10 @@ public class Order {
     public String toString() {
         return "Order\t{" +
                 "id=" + id +
-                ",\tCustomer name = " + customer.getFirstName() + " " + customer.getLastName() +
-                ",\tCustomer age = " + customer.getAge() +
-                ",\tProduct name = " + product.getName() +
-                ",\tProduct price = " + product.getPrice() +
+                ";\tCustomer name = " + customer.getFirstName() + " " + customer.getLastName() +
+                ",\tage = " + customer.getAge() +
+                ";\tProduct name = " + product.getName() +
+                ", price = " + product.getPrice() +
                 '}';
     }
 }
