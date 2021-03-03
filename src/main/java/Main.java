@@ -15,16 +15,20 @@ public class Main {
         CustomerService customerService = new CustomerService();
         OrderService orderService = new OrderService();
 
-        for (int i = 1; i < 10; i++) {
-            productService.createProduct(new Product("Product" + i, (int) (Math.random() * 91) + 10));
-            customerService.createCustomer(new Customer("Name" + i, "Surname" + i, (int) (Math.random() * 71) + 21));
-            orderService.createOrder(new Order(customerService.getCustomerById(i), productService.getProductById(i)));
-        }
+        orderService.deleteAllOrders();
+        customerService.deleteAllCustomers();
+        productService.deleteAllProducts();
 
-        List<Order> orders = orderService.getAllOrders();
-        for (Order order : orders) {
-            System.out.println(order.toString());
-        }
+//        for (int i = 1; i < 10; i++) {
+//            productService.createProduct(new Product("Product" + i, (int) (Math.random() * 91) + 10));
+//            customerService.createCustomer(new Customer("Name" + i, "Surname" + i, (int) (Math.random() * 71) + 21));
+//            orderService.createOrder(new Order(customerService.getCustomerById(i), productService.getProductById(i)));
+//        }
+//
+//        List<Order> orders = orderService.getAllOrders();
+//        for (Order order : orders) {
+//            System.out.println(order.toString());
+//        }
 
 //        for (int i = 0; i < 11; i++) {
 //            productService.createProduct(new Product("Product-" + i, (int) (Math.random() * 91) + 10));

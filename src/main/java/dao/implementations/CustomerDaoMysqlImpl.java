@@ -96,10 +96,12 @@ public class CustomerDaoMysqlImpl implements CustomerDao {
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM " + TABLE_NAME + ";";
+        String sql1 = "DELETE FROM " + TABLE_NAME + ";";
+        String sql2 = "ALTER TABLE " + TABLE_NAME + " AUTO_INCREMENT = 1;";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement()) {
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sql1);
+            statement.executeUpdate(sql2);
         } catch (SQLException e) {
             e.printStackTrace();
         }

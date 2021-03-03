@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 public class ProductDaoMysqlImpl implements ProductDao {
 
+    private static final String TABLE_NAME = "products";
+
     @Override
     public void create(Product product) {
-        String sql = "INSERT INTO products (name, price) VALUES (?, ?);";
+        String sql = "INSERT INTO " + TABLE_NAME + " (name, price) VALUES (?, ?);";
         try (Connection connection = Database.getDbConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, product.getName());
@@ -26,7 +28,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
     @Override
     public ArrayList<Product> findAll() {
         ArrayList<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM products;";
+        String sql = "SELECT * FROM " + TABLE_NAME + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -42,7 +44,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
     @Override
     public Product findById(Integer id) {
         Product product = new Product();
-        String sql = "SELECT * FROM products WHERE id = " + id + ";";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -59,7 +61,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
 
     @Override
     public void updateById(Integer id, Product product) {
-        String sql = "UPDATE products SET name = ?, price = ? WHERE id = ?;";
+        String sql = "UPDATE " + TABLE_NAME + " SET name = ?, price = ? WHERE id = ?;";
         try (Connection connection = Database.getDbConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, product.getName());
@@ -74,7 +76,7 @@ public class ProductDaoMysqlImpl implements ProductDao {
 
     @Override
     public void deleteById(Integer id) {
-        String sql = "DELETE FROM products WHERE id = " + id + ";";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE id = " + id + ";";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
@@ -86,10 +88,12 @@ public class ProductDaoMysqlImpl implements ProductDao {
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM products;";
+        String sql1 = "DELETE FROM " + TABLE_NAME + ";";
+        String sql2 = "ALTER TABLE " + TABLE_NAME + " AUTO_INCREMENT = 1;";
         try (Connection connection = Database.getDbConnection();
              Statement statement = connection.createStatement()) {
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sql1);
+            statement.executeUpdate(sql2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
